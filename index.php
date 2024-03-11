@@ -151,9 +151,9 @@ $event_data3 = eventlisting($con);
 		<div id="absolute-eventmake-section" class="absolute-eventmake-section sec-ptb-100 bg-gray-light clearfix">
 			<div class="eventmaking-wrapper">
 <ul class="nav eventmake-tabs">
-            <?php while($category_row = mysqli_fetch_assoc($category_data)) { ?>
+            <?php $arr = array(); $index=0; while($category_row = mysqli_fetch_assoc($category_data)) { $arr[$index] = $index; $index++; ?>
 					<li>
-						<a class="active" data-toggle="tab" href="#conference">
+						<a class="" data-toggle="tab" href="#<?php echo $index ?>">
 							<i class="<?php echo $category_row['icon_code']; ?>"></i>
 							<?php echo $category_row['name']; ?>
 						</a>
@@ -163,7 +163,8 @@ $event_data3 = eventlisting($con);
 				</ul>
 
 				<div class="tab-content">
-					<div id="conference" class="tab-pane fade in active show">
+
+					<div id="<?php echo $arr[0]; ?>" class="tab-pane fade in active show">
 						<form action="#">
 							<ul>
 
@@ -202,7 +203,7 @@ $event_data3 = eventlisting($con);
 						</form>
 					</div>
 
-					<div id="musical" class="tab-pane fade">
+					<div id="<?php echo $arr[1]; ?>" class="tab-pane fade">
 						<form action="#">
 							<ul>
 
@@ -212,7 +213,7 @@ $event_data3 = eventlisting($con);
 								<li>
 									<select class="country-select">
 										<option selected="" disabled>select Country</option>
-										 <?php while($country_row = mysqli_fetch_assoc($country_data)) { ?>
+										 <?php while($country_row = mysqli_fetch_assoc($country_data1)) { ?>
 										<option><?php echo $country_row['name']; ?></option>
 									<?php } ?>	
 									</select>
@@ -220,7 +221,7 @@ $event_data3 = eventlisting($con);
 								<li>
 									<select class="capital-select">
 										<option selected="" disabled>select capital</option>
-										<?php while($capital_row = mysqli_fetch_assoc($capital_data)) { ?>
+										<?php while($capital_row = mysqli_fetch_assoc($capital_data1)) { ?>
 										<option><?php echo $capital_row['name']; ?></option>
 										<?php } ?>
 									</select>
@@ -240,7 +241,8 @@ $event_data3 = eventlisting($con);
 							</ul>
 						</form>
 					</div>
-					<div id="playground" class="tab-pane fade">
+
+					<div id="<?php echo $arr[2]; ?>" class="tab-pane fade">
 						<form action="#">
 							<ul>
 
@@ -292,6 +294,7 @@ $event_data3 = eventlisting($con);
 							
 						</ul>
 					</div>
+
 				</div>
 				
 			</div>
@@ -930,15 +933,14 @@ $event_data3 = eventlisting($con);
 						<!-- speaker-carousel - start -->
 						<div class="speaker-carousel">
 							<div class="slider-for">
-	<?php while($row = mysqli_fetch_assoc($speaker_data)) { ?>
+
+							<?php while($row = mysqli_fetch_assoc($speaker_data)) { ?>
 								<div class="item">
 									<div class="row">
-
 										<!-- speaker-image - start -->
 										<div class="col-lg-6 col-md-12 col-sm-12">
 											<div class="speaker-image image-wrapper text-center">
 												<img src="assets/images/speaker/<?php echo $row['image']; ?>" alt="Image_not_found">
-												
 											</div>
 										</div>
 										<!-- speaker-image - end -->
@@ -950,46 +952,54 @@ $event_data3 = eventlisting($con);
 												<!-- section-title - start -->
 												<div class="section-title text-left mb-50">
 													<span class="line-style"></span>
-													<small class="sub-title">ShaShiSha  staffs</small>
+													<small class="sub-title">Shashisha staffs</small>
 													<h2 class="big-title">Professional <strong>Speakers</strong></h2>
 												</div>
 												<!-- section-title - end -->
 
 												<div class="speaker-info">
 													<div class="speaker-title mb-30">
-														<span class="speaker-name"><?php echo $row['speaker_name']; ?></span>
+														<span class="speaker-name"><strong><?php echo $row['speaker_name']; ?></strong></span>
 														<span class="work-experienc yellow-color"><strong><?php echo $row['experience']; ?></strong> experienced</span>
 													</div>
 													<p class="black-color mb-30">
-														<?php echo $row['details']; ?>.
+														<?php echo $row['details']; ?>
 													</p>
+													<div class="speaker-social-network ul-li">
+														<h3 class="title title-medium mb-15">
+															<strong>Social</strong> Network
+														</h3>
+														<ul>
+															<li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
+															<li><a href="#!"><i class="fab fa-twitter"></i></a></li>
+															<li><a href="#!"><i class="fab fa-twitch"></i></a></li>
+															<li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
+															<li><a href="#!"><i class="fab fa-instagram"></i></a></li>
+														</ul>
+													</div>
 												</div>
-
 											</div>
 										</div>
 										<!-- speaker-content - end -->
-
-									</div>
-								</div>
-
-								
-<?php } ?>
-							</div>
-                           
-							<div class="slider-nav">
-								<?php while($num = mysqli_fetch_assoc($sql_data)) { ?>
-								<div class="item">
-									<div class="item-content">
-										<span class="speaker-thumbnail">
-											<img src="assets/images/speaker/<?php echo $num['image']; ?>" alt="Image_not_found">
-										</span>
-										<h3 class="speaker-name"><?php echo $num['speaker_name']; ?></h3>
-										<span class="sub-title"><?php echo $num['speaker_name']; ?>Speaker</span>
-									</div>
+									</div>	
 								</div>
 								<?php } ?>
 							</div>
-						
+
+
+							<div class="slider-nav">
+								<?php while($row = mysqli_fetch_assoc($sql_data)) { ?>
+								<div class="item">
+									<div class="item-content">
+										<span class="speaker-thumbnail">
+											<img src="assets/images/speaker/<?php echo $row['image']; ?>" alt="Image_not_found">
+										</span>
+										<h3 class="speaker-name"><?php echo $row['speaker_name']; ?></h3>
+										<span class="sub-title">Shashisha Speaker</span>
+									</div>
+								</div>
+               <?php }?>	
+							</div>
 						</div>
 						<!-- speaker-carousel - end -->
 
@@ -999,10 +1009,6 @@ $event_data3 = eventlisting($con);
 		</section>
 		<!-- speaker-section - end
 		================================================== -->
-
-
-
-
 
 		<!-- conference-section - start
 		================================================== -->
@@ -1072,6 +1078,7 @@ $event_data3 = eventlisting($con);
 						<!-- tab-menu - start -->
 						<div class="container">
 							<div class="row justify-content-lg-start">
+								<?php while($hotel_row = mysqli_fetch_assoc($hotels_data)) {$ratting = explode(',',$hotel_row['ratting']) ?>
 								<div class="col-lg-6 col-md-12 col-sm-12">
 									<div class="tab-menu">
 										<ul class="nav tab-nav mb-50">
@@ -1079,82 +1086,18 @@ $event_data3 = eventlisting($con);
 											<li class="nav-item">
 												<a class="nav-link active" id="nav-one-tab" data-toggle="tab" href="#nav-one" aria-expanded="true">
 													<span class="image">
-														<img src="assets/images/conference/RCJAKPP_00016_coddddnversion.jpg" alt="Image_not_found">
+														<img src="assets/images/conference/<?php echo $hotel_row["image"]; ?>" alt="Image_not_found">
 													</span>
 													<span class="title">
-														<strong class="yellow-color">5 <i class="fas fa-star"></i> Chocolato </strong>
-														Hotel
+														<strong class="yellow-color"><?php echo $ratting[0]; ?><i class="<?php echo $ratting[1]; ?>"></i> <?php echo $hotel_row["name"]; ?>  </strong>
+														
 													</span>
-													<small class="sub-title">Party Room 2.500 seats</small>
-													<small class="price yellow-color">Price from $52/night</small>
+													<small class="sub-title"><?php echo $hotel_row["setting"]; ?> seats</small>
+													<small class="price yellow-color"> <?php echo $hotel_row["price"]; ?>/night</small>
 												</a>
 											</li>
-											<li class="nav-item">
-												<a class="nav-link" id="nav-two-tab" data-toggle="tab" href="#nav-two" aria-expanded="false">
-													<span class="image">
-														<img src="assets/images/conference/fresh-conference-room-microphones-decoration-ideas-collection-gallery-to-conference-room-microphones-home-ideas.jpg" alt="Image_not_found">
-													</span>
-													<span class="title">
-														<strong class="yellow-color">4 <i class="fas fa-star"></i> Vanila </strong>
-														Hotel
-													</span>
-													<small class="sub-title">Party Room 2.500 seats</small>
-													<small class="price yellow-color">Price from $52/night</small>
-												</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" id="nav-three-tab" data-toggle="tab" href="#nav-three" aria-expanded="false">
-													<span class="image">
-														<img src="assets/images/conference/RCTORON_00047ss.jpg" alt="Image_not_found">
-													</span>
-													<span class="title">
-														<strong class="yellow-color">3 <i class="fas fa-star"></i> Pear </strong>
-														Hotel
-													</span>
-													<small class="sub-title">Party Room 2.500 seats</small>
-													<small class="price yellow-color">Price from $52/night</small>
-												</a>
-											</li>
-
-											<li class="nav-item">
-												<a class="nav-link" id="nav-four-tab" data-toggle="tab" href="#nav-four" aria-expanded="false">
-													<span class="image">
-														<img src="assets/images/conference/clayton-hotel-leopardstown-meeting-room-1.jpg" alt="Image_not_found">
-													</span>
-													<span class="title">
-														<strong class="yellow-color">5 <i class="fas fa-star"></i> Chocolato </strong>
-														Hotel
-													</span>
-													<small class="sub-title">Party Room 2.500 seats</small>
-													<small class="price yellow-color">Price from $52/night</small>
-												</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" id="nav-five-tab" data-toggle="tab" href="#nav-five" aria-expanded="false">
-													<span class="image">
-														<img src="assets/images/conference/conference-room-with-projection-facilities-3d-model-max.jpg" alt="Image_not_found">
-													</span>
-													<span class="title">
-														<strong class="yellow-color">4 <i class="fas fa-star"></i> Vanila </strong>
-														Hotel
-													</span>
-													<small class="sub-title">Party Room 2.500 seats</small>
-													<small class="price yellow-color">Price from $52/night</small>
-												</a>
-											</li>
-											<li class="nav-item">
-												<a class="nav-link" id="nav-six-tab" data-toggle="tab" href="#nav-six" aria-expanded="false">
-													<span class="image">
-														<img src="assets/images/conference/midlands-park-hotel-meeting-rooms.jpg" alt="Image_not_found">
-													</span>
-													<span class="title">
-														<strong class="yellow-color">3 <i class="fas fa-star"></i> pear </strong>
-														Hotel
-													</span>
-													<small class="sub-title">Party Room 2.500 seats</small>
-													<small class="price yellow-color">Price from $52/night</small>
-												</a>
-											</li>
+										
+											
 
 										</ul>
 										<div class="more-btn">
@@ -1163,7 +1106,7 @@ $event_data3 = eventlisting($con);
 											</a>
 										</div>
 									</div>
-								</div>
+								</div>		<?php } ?>
 							</div>
 						</div>
 						<!-- tab-menu - end -->
@@ -1171,9 +1114,9 @@ $event_data3 = eventlisting($con);
 						<!-- tab-content - start -->
 						<div class="tab-content">
 							<!-- tab-pane - start -->
-							<div class="tab-pane fade active show" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab" aria-expanded="true">
+							<div class="tab-pane fade active show" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab" aria-expanded="true">	<?php while($hotel_row = mysqli_fetch_assoc($hotels_data1)) { ?>
 								<div class="image">
-									<img src="assets/images/conference/RCJAKPP_00016_coddddnversion.jpg" alt="Image_not_found">
+									<img src="assets/images/conference/<?php echo $hotel_row["image"]; ?>" alt="Image_not_found">
 									<a href="#!" class="custom-btn">
 										booking now
 									</a>
@@ -1186,6 +1129,7 @@ $event_data3 = eventlisting($con);
 									</div>
 								</div>
 							</div>
+						<?php } ?>
 							<!-- tab-pane - end -->
 
 							<!-- tab-pane - start -->
@@ -1206,77 +1150,7 @@ $event_data3 = eventlisting($con);
 							</div>
 							<!-- tab-pane - end -->
 
-							<!-- tab-pane - start -->
-							<div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab" aria-expanded="false">
-								<div class="image">
-									<img src="assets/images/conference/RCTORON_00047ss.jpg" alt="Image_not_found">
-									<a href="#!" class="custom-btn">
-										booking now
-									</a>
-									<div class="badge-item">
-										<div class="content">
-											<i class="fas fa-star"></i>
-											<strong>5.0</strong>
-											<small>featured hotel</small>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- tab-pane - end -->
-
-							<!-- tab-pane - start -->
-							<div class="tab-pane fade" id="nav-four" role="tabpanel" aria-labelledby="nav-four-tab" aria-expanded="false">
-								<div class="image">
-									<img src="assets/images/conference/clayton-hotel-leopardstown-meeting-room-1.jpg" alt="Image_not_found">
-									<a href="#!" class="custom-btn">
-										booking now
-									</a>
-									<div class="badge-item">
-										<div class="content">
-											<i class="fas fa-star"></i>
-											<strong>5.0</strong>
-											<small>featured hotel</small>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- tab-pane - end -->
-
-							<!-- tab-pane - start -->
-							<div class="tab-pane fade" id="nav-five" role="tabpanel" aria-labelledby="nav-five-tab" aria-expanded="false">
-								<div class="image">
-									<img src="assets/images/conference/conference-room-with-projection-facilities-3d-model-max.jpg" alt="Image_not_found">
-									<a href="#!" class="custom-btn">
-										booking now
-									</a>
-									<div class="badge-item">
-										<div class="content">
-											<i class="fas fa-star"></i>
-											<strong>5.0</strong>
-											<small>featured hotel</small>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- tab-pane - end -->
-
-							<!-- tab-pane - start -->
-							<div class="tab-pane fade" id="nav-six" role="tabpanel" aria-labelledby="nav-six-tab" aria-expanded="false">
-								<div class="image">
-									<img src="assets/images/conference/midlands-park-hotel-meeting-rooms.jpg" alt="Image_not_found">
-									<a href="#!" class="custom-btn">
-										booking now
-									</a>
-									<div class="badge-item">
-										<div class="content">
-											<i class="fas fa-star"></i>
-											<strong>5.0</strong>
-											<small>featured hotel</small>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- tab-pane - end -->
+						
 
 						</div>
 						<!-- tab-content - end -->
@@ -1669,17 +1543,6 @@ $event_data3 = eventlisting($con);
 		</section>
 		<!-- event-gallery-section - end
 		================================================== -->
-
-
-
-
-
-		
-
-
-
-
-		
 
 
 

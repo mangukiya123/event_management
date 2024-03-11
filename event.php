@@ -1,4 +1,23 @@
-<?php include_once 'header.php'; ?>
+<?php include_once 'header.php';
+function eventlisting($con)
+    {
+    	$sql_select_eventlisting="select * from eventinformations";
+    	$event_data = mysqli_query($con,$sql_select_eventlisting);
+		return $event_data;
+    }
+
+    function category($con)
+	{
+		$sql_select_catergory = "select * from eventcategies";
+		$category_data = mysqli_query($con,$sql_select_catergory);
+		return $category_data;
+	}
+
+  $event_data = eventlisting($con);	
+    $category_data = category($con);
+
+  
+     ?>
 
 
 		<!-- breadcrumb-section - start
@@ -69,10 +88,10 @@
 									<li>
 										<span class="title">event category</span>
 										<select id="event-category-select">
-											<option selected="">Conference</option>
-											<option value="1">Option 1</option>
-											<option value="2">Option 2</option>
-											<option value="3">Option 3</option>
+											<option selected="" disabled>Select Category</option>
+											<?php while($category_row = mysqli_fetch_assoc($category_data)) { ?>
+											<option value="1"><?php echo $category_row['name']; ?></option>
+											<?php } ?>
 										</select>
 									</li>
 									<li>
@@ -195,9 +214,10 @@
 
 									<!-- event-image - start -->
 									<div class="event-image">
+										<?php while($event_row = mysqli_fetch_assoc($event_data)) { $date = explode(',',$event_row['event_date']); ?>
 										<div class="post-date">
-											<span class="date">26</span>
-											<small class="month">june</small>
+											<span class="date"><?php echo $date[0]; ?></span>
+											<small class="month"><?php echo $date[1]; ?></small>
 										</div>
 										<img src="assets/images/event/event-1.jpg" alt="Image_not_found">
 									</div>
@@ -207,12 +227,12 @@
 									<div class="event-content">
 										<div class="event-title mb-15">
 											<h3 class="title">
-												Barcelona <strong>Food truck Festival 2018</strong>
+												<?php echo $event_row['name']; ?>
 											</h3>
-											<span class="ticket-price yellow-color">Tickets from $52</span>
+											<span class="ticket-price yellow-color">Tickets from <?php echo $event_row['event_price']; ?></span>
 										</div>
 										<p class="discription-text mb-30">
-											Lorem ipsum dollor site amet the best  consectuer diam nerdistin adipiscing elites sed diam nonummy nibh the ebest uismod delgas tincidunt ut laoreet dolore magna...
+											<?php echo $event_row['event_details']; ?>
 										</p>
 										<div class="event-info-list ul-li clearfix">
 											<ul>
@@ -221,8 +241,7 @@
 														<i class="fas fa-microphone"></i>
 													</span>
 													<div class="info-content">
-														<small>Speaker</small>
-														<h3>jenny juis</h3>
+														<?php echo $event_row['event_speaker_nae']; ?>
 													</div>
 												</li>
 												<li>
@@ -231,7 +250,7 @@
 													</span>
 													<div class="info-content">
 														<small>Max Seats</small>
-														<h3>2,250 seats</h3>
+														<h3><?php echo $event_row['max_seats']; ?></h3>
 													</div>
 												</li>
 												<li>
@@ -241,239 +260,12 @@
 												</li>
 											</ul>
 										</div>
-									</div>
-									<!-- event-content - end -->
+									</div>	
+								<!-- event-content - end -->
 
 								</div>
 								<!-- event-item - end -->
 
-								<!-- event-item - start -->
-								<div class="event-list-item clearfix">
-
-									<!-- event-image - start -->
-									<div class="event-image">
-										<div class="post-date">
-											<span class="date">26</span>
-											<small class="month">june</small>
-										</div>
-										<img src="assets/images/event/event-2.jpg" alt="Image_not_found">
-									</div>
-									<!-- event-image - end -->
-
-									<!-- event-content - start -->
-									<div class="event-content">
-										<div class="event-title mb-15">
-											<h3 class="title">
-												Barcelona <strong>Food truck Festival 2018</strong>
-											</h3>
-											<span class="ticket-price yellow-color">Tickets from $52</span>
-										</div>
-										<p class="discription-text mb-30">
-											Lorem ipsum dollor site amet the best  consectuer diam nerdistin adipiscing elites sed diam nonummy nibh the ebest uismod delgas tincidunt ut laoreet dolore magna...
-										</p>
-										<div class="event-info-list ul-li clearfix">
-											<ul>
-												<li>
-													<span class="icon">
-														<i class="fas fa-microphone"></i>
-													</span>
-													<div class="info-content">
-														<small>Speaker</small>
-														<h3>jenny juis</h3>
-													</div>
-												</li>
-												<li>
-													<span class="icon">
-														<i class="fas fa-ticket-alt"></i>
-													</span>
-													<div class="info-content">
-														<small>Max Seats</small>
-														<h3>2,250 seats</h3>
-													</div>
-												</li>
-												<li>
-													<a href="#!" class="tickets-details-btn">
-														tickets & details
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- event-content - end -->
-
-								</div>
-								<!-- event-item - end -->
-
-								<!-- event-item - start -->
-								<div class="event-list-item clearfix">
-
-									<!-- event-image - start -->
-									<div class="event-image">
-										<div class="post-date">
-											<span class="date">26</span>
-											<small class="month">june</small>
-										</div>
-										<img src="assets/images/event/event-3.jpg" alt="Image_not_found">
-									</div>
-									<!-- event-image - end -->
-
-									<!-- event-content - start -->
-									<div class="event-content">
-										<div class="event-title mb-15">
-											<h3 class="title">
-												Barcelona <strong>Food truck Festival 2018</strong>
-											</h3>
-											<span class="ticket-price yellow-color">Tickets from $52</span>
-										</div>
-										<p class="discription-text mb-30">
-											Lorem ipsum dollor site amet the best  consectuer diam nerdistin adipiscing elites sed diam nonummy nibh the ebest uismod delgas tincidunt ut laoreet dolore magna...
-										</p>
-										<div class="event-info-list ul-li clearfix">
-											<ul>
-												<li>
-													<span class="icon">
-														<i class="fas fa-microphone"></i>
-													</span>
-													<div class="info-content">
-														<small>Speaker</small>
-														<h3>jenny juis</h3>
-													</div>
-												</li>
-												<li>
-													<span class="icon">
-														<i class="fas fa-ticket-alt"></i>
-													</span>
-													<div class="info-content">
-														<small>Max Seats</small>
-														<h3>2,250 seats</h3>
-													</div>
-												</li>
-												<li>
-													<a href="#!" class="tickets-details-btn">
-														tickets & details
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- event-content - end -->
-
-								</div>
-								<!-- event-item - end -->
-
-								<!-- event-item - start -->
-								<div class="event-list-item clearfix">
-
-									<!-- event-image - start -->
-									<div class="event-image">
-										<div class="post-date">
-											<span class="date">26</span>
-											<small class="month">june</small>
-										</div>
-										<img src="assets/images/event/event-4.jpg" alt="Image_not_found">
-									</div>
-									<!-- event-image - end -->
-
-									<!-- event-content - start -->
-									<div class="event-content">
-										<div class="event-title mb-15">
-											<h3 class="title">
-												Barcelona <strong>Food truck Festival 2018</strong>
-											</h3>
-											<span class="ticket-price yellow-color">Tickets from $52</span>
-										</div>
-										<p class="discription-text mb-30">
-											Lorem ipsum dollor site amet the best  consectuer diam nerdistin adipiscing elites sed diam nonummy nibh the ebest uismod delgas tincidunt ut laoreet dolore magna...
-										</p>
-										<div class="event-info-list ul-li clearfix">
-											<ul>
-												<li>
-													<span class="icon">
-														<i class="fas fa-microphone"></i>
-													</span>
-													<div class="info-content">
-														<small>Speaker</small>
-														<h3>jenny juis</h3>
-													</div>
-												</li>
-												<li>
-													<span class="icon">
-														<i class="fas fa-ticket-alt"></i>
-													</span>
-													<div class="info-content">
-														<small>Max Seats</small>
-														<h3>2,250 seats</h3>
-													</div>
-												</li>
-												<li>
-													<a href="#!" class="tickets-details-btn">
-														tickets & details
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- event-content - end -->
-
-								</div>
-								<!-- event-item - end -->
-
-								<!-- event-item - start -->
-								<div class="event-list-item clearfix">
-
-									<!-- event-image - start -->
-									<div class="event-image">
-										<div class="post-date">
-											<span class="date">26</span>
-											<small class="month">june</small>
-										</div>
-										<img src="assets/images/event/event-5.jpg" alt="Image_not_found">
-									</div>
-									<!-- event-image - end -->
-
-									<!-- event-content - start -->
-									<div class="event-content">
-										<div class="event-title mb-15">
-											<h3 class="title">
-												Barcelona <strong>Food truck Festival 2018</strong>
-											</h3>
-											<span class="ticket-price yellow-color">Tickets from $52</span>
-										</div>
-										<p class="discription-text mb-30">
-											Lorem ipsum dollor site amet the best  consectuer diam nerdistin adipiscing elites sed diam nonummy nibh the ebest uismod delgas tincidunt ut laoreet dolore magna...
-										</p>
-										<div class="event-info-list ul-li clearfix">
-											<ul>
-												<li>
-													<span class="icon">
-														<i class="fas fa-microphone"></i>
-													</span>
-													<div class="info-content">
-														<small>Speaker</small>
-														<h3>jenny juis</h3>
-													</div>
-												</li>
-												<li>
-													<span class="icon">
-														<i class="fas fa-ticket-alt"></i>
-													</span>
-													<div class="info-content">
-														<small>Max Seats</small>
-														<h3>2,250 seats</h3>
-													</div>
-												</li>
-												<li>
-													<a href="#!" class="tickets-details-btn">
-														tickets & details
-													</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<!-- event-content - end -->
-
-								</div>
-								<!-- event-item - end -->
 
 								<div class="pagination ul-li clearfix">
 									<ul>
@@ -489,7 +281,7 @@
 											<a class="page-link" href="#!">Next</a>
 										</li>
 									</ul>
-								</div>
+<?php } ?>								</div>
 
 							</div>
 

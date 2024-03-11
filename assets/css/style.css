@@ -1704,7 +1704,7 @@ button {
     padding: 0px 30px; }
     .default-footer-section .footer-top .usefullinks-wrapper ul li a {
       width: 100%;
-      height: 100%;
+/*      height: 100%;*/
       display: block;
       padding: 8px 0;
       padding-left: 30px;

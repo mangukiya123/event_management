@@ -1,9 +1,25 @@
-<?php include_once 'header.php'; ?>
+<?php include_once 'header.php'; 
+
+include('db.php');
+
+   if (isset($_POST['submit'])) {
+    	
+        $name = $_POST['name'];
+        $country = $_POST['country'];
+        $email = $_POST['email'];
+        $phoneno = $_POST['phoneno'];
+        $message = $_POST['message'];
+
+        $insert_query = "insert into contact(name,email,country,phoneno,message) values('$name' , '$email' , '$country' , '$phoneno' , '$message')";
+
+        mysqli_query($con,$insert_query);
+
+        echo "<script> alert('Your Mail Send Successfully...!')</script>";
+    } 
+?>
 
 
-
-		<!-- breadcrumb-section - start
-		================================================== -->
+		<!-- breadcrumb-section - start ================================================== -->
 		<section id="breadcrumb-section" class="breadcrumb-section clearfix">
 			<div class="jarallax" style="background-image: url(assets/images/breadcrumb/0.breadcrumb-bg.jpg);">
 				<div class="overlay-black">
@@ -33,15 +49,12 @@
 				</div>
 			</div>
 		</section>
-		<!-- breadcrumb-section - end
-		================================================== -->
+		<!-- breadcrumb-section - end ================================================== -->
 
 
 
 
-
-		<!-- contact-section - start
-		================================================== -->
+		<!-- contact-section - start ================================================== -->
 		<section id="contact-section" class="contact-section sec-ptb-100 clearfix">
 			<div class="container">
 
@@ -54,36 +67,35 @@
 
 				<!-- contact-form - start -->
 				<div class="contact-form form-wrapper text-center">
-					<form action="https://jthemes.net/themes/html/harmony-event/contact.php" method="post">
+					<form  method="post">
 						<div class="row">
-
 							<div class="col-lg-6 col-md-6 col-sm-12">
 								<div class="form-item">
-									<input type="text" placeholder="Your Name" required>
+									<input type="text" placeholder="Your Name" required name="name">
 								</div>
 							</div>
 
 							<div class="col-lg-6 col-md-6 col-sm-12">
 								<div class="form-item">
-									<input type="email" placeholder="Email Address" required>
+									<input type="email" placeholder="Email Address" required name="email">
 								</div>
 							</div>
 
 							<div class="col-lg-6 col-md-6 col-sm-12">
 								<div class="form-item">
-									<input type="text" placeholder="Your Country" required>
+									<input type="text" placeholder="Your Country" requiredname="country">
 								</div>
 							</div>
 
 							<div class="col-lg-6 col-md-6 col-sm-12">
 								<div class="form-item">
-									<input type="tel" placeholder="Phone Number" required>
+									<input type="tel" placeholder="Phone Number" required name="phoneno">
 								</div>
 							</div>
 
 							<div class="col-lg-12 col-md-12 col-sm-12">
-								<textarea placeholder="Your Message" required></textarea>
-								<button type="submit" class="custom-btn">send mail</button>
+								<textarea placeholder="Your Message" required name="message"></textarea>
+								<input type="submit" class="custom-btn" value="Send Mail" name="submit">
 							</div>
 							
 						</div>
@@ -93,15 +105,13 @@
 
 			</div>
 		</section>
-		<!-- contact-section - end
-		================================================== -->
+		<!-- contact-section - end ================================================== -->
 
 
 
 
 
-		<!-- google map - start
-		================================================== -->
+		<!-- google map - start ================================================== -->
 		<section id="map-section" class="map-section clearfix">
 			<div class="address-wrapper">
 
@@ -164,7 +174,6 @@
 				<div id="googleMaps" class="google-map-container"></div>
 			</div>
 		</section>
-		<!-- google map - end
-		================================================== -->
+		<!-- google map - end ================================================== -->
 
 <?php include_once 'footer.php'; ?>

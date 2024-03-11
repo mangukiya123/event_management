@@ -20,7 +20,21 @@
 
   		header('location:index.php');
   	}
+  
+	if(isset($_POST['submit']))
+	{
+		$user_name = $_POST['user_name'];
+		$user_email = $_POST['user_email'];
+		$user_password = $_POST['user_password'];
+
+		$insert_query = "insert into user(user_name,user_email,user_password)values('$user_name','$user_email','$user_password')";
+		mysqli_query($con,$insert_query);
+
+		header('location:index.php');
+
+	}
   }
+?>
 
 ?>
 
@@ -151,7 +165,7 @@
 												<div class="leftside-content">
 													<div class="site-logo-wrapper mb-80">
 														
-															<img src="assets/images/logo.JPEG" alt="logo_not_found" style="border-radius: 50%; height: 40%; width: 40%;">
+															<img src="assets/images/logo.JPEG" alt="logo_not_found" style=" height: 50%; width: 50%;">
 														
 													</div>
 													<div class="register-login-link mb-80">
@@ -226,7 +240,7 @@
 												<div class="leftside-content">
 													<div class="site-logo-wrapper mb-80">
 														<a class="logo">
-															<img src="assets/images/logo.JPEG" alt="logo_not_found" style="border-radius: 50%; height: 40%; width: 40%;">
+															<img src="assets/images/logo.JPEG" alt="logo_not_found" style=" height: 50%; width: 70%;">
 														</a>
 													</div>
 													<div class="register-login-link mb-80">
@@ -303,7 +317,7 @@
 						<!-- site-logo-wrapper - start -->
 						<div class="col-lg-3">
 							<div class="site-logo-wrapper">
-								<img src="assets/images/logo.JPEG" alt="logo_not_found" style="border-radius: 50%; height: 40%; width: 40%;">
+								<img src="assets/images/logo.JPEG" alt="logo_not_found" style="border-radius: 50%; height: 100%; width: 40%;">
 							</div>
 						</div>
 						<!-- site-logo-wrapper - end -->
@@ -389,20 +403,3 @@
 		</header>
 		<!-- header-section - end
 		================================================== -->
-<?php
-
-  include 'db.php';
-  
-  if(isset($_POST['submit']))
-  {
-  	$user_name = $_POST['user_name'];
-	$user_email = $_POST['user_email'];
-	$user_password = $_POST['user_password'];
-
-  	$insert_query = "insert into user(user_name,user_email,user_password)values('$user_name','$user_email','$user_password')";
-    mysqli_query($con,$insert_query);
-
-    header('location:index.php');
-
-  }
-?>

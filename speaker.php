@@ -1,4 +1,15 @@
-<?php include_once 'header.php'; ?>
+<?php include_once 'header.php'; 
+
+function get_speakers($con)
+{
+	$sql_select_speaker = "select * from speakers";
+	$sql_data = mysqli_query($con,$sql_select_speaker);
+	return $sql_data;
+}
+
+$sql_data = get_speakers($con);
+$sql_data1 = get_speakers($con);
+?>
 
 
 		<!-- breadcrumb-section - start
@@ -50,14 +61,13 @@
 						<div class="speaker-carousel">
 							<div class="slider-for">
 
+							<?php while($row = mysqli_fetch_assoc($sql_data1)) { ?>
 								<div class="item">
 									<div class="row">
-
 										<!-- speaker-image - start -->
 										<div class="col-lg-6 col-md-12 col-sm-12">
 											<div class="speaker-image image-wrapper text-center">
-												<img src="assets/images/speaker/speakes1.png" alt="Image_not_found">
-												<span class="speaker-name"><strong>Jenni</strong> Berthas</span>
+												<img src="assets/images/speaker/<?php echo $row['image']; ?>" alt="Image_not_found">
 											</div>
 										</div>
 										<!-- speaker-image - end -->
@@ -69,31 +79,20 @@
 												<!-- section-title - start -->
 												<div class="section-title text-left mb-50">
 													<span class="line-style"></span>
-													<small class="sub-title">ShaShiSha  staffs</small>
+													<small class="sub-title">Shashisha staffs</small>
 													<h2 class="big-title">Professional <strong>Speakers</strong></h2>
 												</div>
 												<!-- section-title - end -->
 
 												<div class="speaker-info">
 													<div class="speaker-title mb-30">
-														<span class="speaker-name"><strong>Jenni</strong> Berthas</span>
-														<span class="work-experienc yellow-color"><strong>15 Years</strong> experienced</span>
+														<span class="speaker-name"><strong><?php echo $row['speaker_name']; ?></strong></span>
+														<span class="work-experienc yellow-color"><strong><?php echo $row['experience']; ?></strong> experienced</span>
 													</div>
 													<p class="black-color mb-30">
-														Lorem ipsum dollor site amet the best  consectuer adipiscing elites sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam...
+														<!-- <?php echo $row['details']; ?> -->
 													</p>
-													<div class="speaker-social-network ul-li">
-														<h3 class="title title-medium mb-15">
-															<strong>Social</strong> Network
-														</h3>
-														<ul>
-															<li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-															<li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-															<li><a href="#!"><i class="fab fa-twitch"></i></a></li>
-															<li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-															<li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-														</ul>
-													</div>
+													
 												</div>
 
 											</div>
@@ -102,178 +101,25 @@
 
 									</div>
 								</div>
-
-								<div class="item">
-									<div class="row">
-
-										<!-- speaker-image - start -->
-										<div class="col-lg-6 col-md-12 col-sm-12">
-											<div class="speaker-image image-wrapper text-center">
-												<img src="assets/images/speaker/speakes1.png" alt="Image_not_found">
-												<span class="speaker-name"><strong>Jonathan</strong> Doe</span>
-											</div>
-										</div>
-										<!-- speaker-image - end -->
-
-										<!-- speaker-content - start -->
-										<div class="col-lg-6 col-md-12 col-sm-12">
-											<div class="speaker-content">
-
-												<!-- section-title - start -->
-												<div class="section-title text-left mb-50">
-													<span class="line-style"></span>
-													<small class="sub-title">ShaShiSha  staffs</small>
-													<h2 class="big-title">Professional <strong>Speakers</strong></h2>
-												</div>
-												<!-- section-title - end -->
-
-												<div class="speaker-info">
-													<div class="speaker-title mb-30">
-														<span class="speaker-name"><strong>Jonathan</strong> Doe</span>
-														<span class="work-experienc yellow-color"><strong>15 Years</strong> experienced</span>
-													</div>
-													<p class="black-color mb-30">
-														Lorem ipsum dollor site amet the best  consectuer adipiscing elites sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam...
-													</p>
-													<div class="speaker-social-network ul-li">
-														<h3 class="title title-medium mb-15">
-															<strong>Social</strong> Network
-														</h3>
-														<ul>
-															<li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-															<li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-															<li><a href="#!"><i class="fab fa-twitch"></i></a></li>
-															<li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-															<li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-										</div>
-										<!-- speaker-content - end -->
-
-									</div>
-								</div>
-
-								<div class="item">
-									<div class="row">
-
-										<!-- speaker-image - start -->
-										<div class="col-lg-6 col-md-12 col-sm-12">
-											<div class="speaker-image image-wrapper text-center">
-												<img src="assets/images/speaker/speakes1.png" alt="Image_not_found">
-												<span class="speaker-name"><strong>Denies</strong> Suarez</span>
-											</div>
-										</div>
-										<!-- speaker-image - end -->
-
-										<!-- speaker-content - start -->
-										<div class="col-lg-6 col-md-12 col-sm-12">
-											<div class="speaker-content">
-
-												<!-- section-title - start -->
-												<div class="section-title text-left mb-50">
-													<span class="line-style"></span>
-													<small class="sub-title">ShaShiSha  staffs</small>
-													<h2 class="big-title">Professional <strong>Speakers</strong></h2>
-												</div>
-												<!-- section-title - end -->
-
-												<div class="speaker-info">
-													<div class="speaker-title mb-30">
-														<span class="speaker-name"><strong>Denies</strong> Suarez</span>
-														<span class="work-experienc yellow-color"><strong>15 Years</strong> experienced</span>
-													</div>
-													<p class="black-color mb-30">
-														Lorem ipsum dollor site amet the best  consectuer adipiscing elites sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam...
-													</p>
-													<div class="speaker-social-network ul-li">
-														<h3 class="title title-medium mb-15">
-															<strong>Social</strong> Network
-														</h3>
-														<ul>
-															<li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-															<li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-															<li><a href="#!"><i class="fab fa-twitch"></i></a></li>
-															<li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-															<li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-										</div>
-										<!-- speaker-content - end -->
-
-									</div>
-								</div>
-
-								<div class="item">
-									<div class="row">
-
-										<!-- speaker-image - start -->
-										<div class="col-lg-6 col-md-12 col-sm-12">
-											<div class="speaker-image image-wrapper text-center">
-												<img src="assets/images/speaker/speakes1.png" alt="Image_not_found">
-												<span class="speaker-name"><strong>Jonathan</strong> Doe</span>
-											</div>
-										</div>
-										<!-- speaker-image - end -->
-
-										<!-- speaker-content - start -->
-										<div class="col-lg-6 col-md-12 col-sm-12">
-											<div class="speaker-content">
-
-												<!-- section-title - start -->
-												<div class="section-title text-left mb-50">
-													<span class="line-style"></span>
-													<small class="sub-title">ShaShiSha  staffs</small>
-													<h2 class="big-title">Professional <strong>Speakers</strong></h2>
-												</div>
-												<!-- section-title - end -->
-
-												<div class="speaker-info">
-													<div class="speaker-title mb-30">
-														<span class="speaker-name"><strong>Jonathan</strong> Doe</span>
-														<span class="work-experienc yellow-color"><strong>15 Years</strong> experienced</span>
-													</div>
-													<p class="black-color mb-30">
-														Lorem ipsum dollor site amet the best  consectuer adipiscing elites sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam...
-													</p>
-													<div class="speaker-social-network ul-li">
-														<h3 class="title title-medium mb-15">
-															<strong>Social</strong> Network
-														</h3>
-														<ul>
-															<li><a href="#!"><i class="fab fa-facebook-f"></i></a></li>
-															<li><a href="#!"><i class="fab fa-twitter"></i></a></li>
-															<li><a href="#!"><i class="fab fa-twitch"></i></a></li>
-															<li><a href="#!"><i class="fab fa-google-plus-g"></i></a></li>
-															<li><a href="#!"><i class="fab fa-instagram"></i></a></li>
-														</ul>
-													</div>
-												</div>
-
-											</div>
-										</div>
-										<!-- speaker-content - end -->
-
-									</div>
-								</div>
+							<?php } ?>
 
 							</div>
 
 							<div class="slider-nav">
-								<div class="item">
-									<div class="item-content">
-										<span class="speaker-thumbnail">
-											<img src="assets/images/speaker/speakes-thumbnail.png" alt="Image_not_found">
-										</span>
-										<h3 class="speaker-name">Jenni Berthas</h3>
-										<span class="sub-title">ShaShiSha  Speaker</span>
+
+								<?php while($row = mysqli_fetch_assoc($sql_data)) { ?>
+									<div class="item">
+										<div class="item-content">
+											<span class="speaker-thumbnail">
+												<img src="assets/images/speaker/<?php echo $row['image']; ?>" alt="Image_not_found">
+											</span>
+											<h3 class="speaker-name"><?php echo $row['speaker_name']; ?></h3>
+											<!-- <span class="sub-title"><?php echo $row['speaker_name']; ?> Speaker</span> -->
+										</div>
 									</div>
-								</div>
+								<?php } ?>
+							
+
 							</div>
 						</div>
 						<!-- speaker-carousel - end -->
@@ -281,8 +127,7 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- speaker-section - end
+		</section>section - end
 		================================================== -->
 
 

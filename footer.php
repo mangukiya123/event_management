@@ -1,4 +1,4 @@
-		<!-- default-footer-section - start
+<!-- default-footer-section - start
 		================================================== -->
 		<footer id="footer-section" class="footer-section default-footer-section clearfix">
 
@@ -34,7 +34,7 @@
 											</span>
 											<div class="info-content">
 												<p><a href="#!">contact@pantero.com</a></p>
-												<h3><a href="#!">info@ShaShiSha .com</a></h3>
+												<h3><a href="#!">ShshishaEvent.com</a></h3>
 											</div>
 										</div>
 									</div>
@@ -47,8 +47,8 @@
 												<i class="fas fa-phone"></i>
 											</span>
 											<div class="info-content">
-												<p>+91 93282 53208</p>
-												<h3>+91 70966 72573</h3>
+												<p><a href="#!">+91 93282 53208</a></p>
+												<h3><a href="#!">+91 70966 72573</a></h3>
 											</div>
 										</div>
 									</div>
@@ -65,7 +65,9 @@
 
 								<!-- site-logo-wrapper - start -->
 								<div class="site-logo-wrapper mb-30">
-									<img src="assets/images/logo.JPEG" alt="logo_not_found" style="border-radius: 50%; height: 40%; width: 40%;">
+									<a href="index-1.html" class="logo">
+										<img src="assets/images/logo.JPEG" alt="logo_not_found">
+									</a>
 								</div>
 								<!-- site-logo-wrapper - end -->
 
@@ -78,19 +80,19 @@
 									<h3 class="social-title">network</h3>
 									<ul>
 										<li>
-											<i class="fab fa-facebook-f"></i>
+											<a href="#!"><i class="fab fa-facebook-f"></i></a>
 										</li>
 										<li>
-											<i class="fab fa-twitter"></i>
+											<a href="#!"><i class="fab fa-twitter"></i></a>
 										</li>
 										<li>
-											<i class="fab fa-twitch"></i>
+											<a href="#!"><i class="fab fa-twitch"></i></a>
 										</li>
 										<li>
-											<i class="fab fa-google-plus-g"></i>
+											<a href="#!"><i class="fab fa-google-plus-g"></i></a>
 										</li>
 										<li>
-											<i class="fab fa-instagram"></i>
+											<a href="#!"><i class="fab fa-instagram"></i></a>
 										</li>
 									</ul>
 								</div>
@@ -126,10 +128,10 @@
 									useful <strong>links</strong>
 								</h3>
 								<ul>
-									<li><a href="about.php">About ShaShiSha</a></li>
+									<li><a href="about.php">About Shashisha</a></li>
 									<li><a href="#!">Disclaimer</a></li>
 									<li><a href="contact.php">Contact us</a></li>
-									<li><a href="event.php">eventSchedule</a></li>
+									<li><a href="event.php">Events Schedule</a></li>
 									<li><a href="#!">Sponsors</a></li>
 									<li><a href="#!">Venues</a></li>
 								</ul>
@@ -142,7 +144,7 @@
 						<div class="col-lg-3 col-md-6 col-sm-12">
 							<div class="instagram-wrapper ul-li">
 								<h3 class="footer-item-title">
-									ShaShiSha  <strong>instagram</strong>
+									harmoni <strong>instagram</strong>
 								</h3>
 								<ul>
 									<li class="image-wrapper">
@@ -163,7 +165,7 @@
 									</li>
 								</ul>
 								<h4 class="followus-link">
-									Follow Our Instagram <a href="#!">#ShaShiSha </a>
+									Follow Our Instagram <a href="#!">#Shashisha</a>
 								</h4>
 							</div>
 						</div>
@@ -181,12 +183,23 @@
 						<!-- copyright-text - start -->
 						<div class="col-lg-7 col-md-12 col-sm-12">
 							<div class="copyright-text">
-								<p class="m-0">©2020 <a href="#!" class="site-link">ShaShiSha .com all right reserved, made with <i class="fas fa-heart"></i> by </a> <a href="https://jthemes.com/" class="author-link"><strong>ShaShiSha Event</strong></a></p>
+								<p class="m-0">©2020 <a href="#!" class="site-link">Shashisha.com</a> all right reserved, made with <i class="fas fa-heart"></i> by <a href="https://jthemes.com/" class="author-link"><strong>jThemes Studio</strong></a></p>
 							</div>
 						</div>
 						<!-- copyright-text - end -->
 
-						
+						<!-- footer-menu - start -->
+						<div class="col-lg-5 col-md-12 col-sm-12">
+							<div class="footer-menu">
+								<ul>
+									<li><a href="contact.html">Contact us</a></li>
+									<li><a href="about.html">About us</a></li>
+									<li><a href="#!">Site map</a></li>
+									<li><a href="#!">Privacy policy</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- footer-menu - end -->
 
 					</div>
 				</div>
@@ -195,6 +208,14 @@
 		</footer>
 		<!-- default-footer-section - end
 		================================================== -->
+
+
+
+
+
+
+
+
 
 
 		<!-- fraimwork - jquery include -->
@@ -237,5 +258,5 @@
 
 	</body>
 
-<!-- Mirrored from jthemes.net/themes/html/ShaShiSha-event/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Jan 2024 11:18:16 GMT -->
+<!-- Mirrored from jthemes.net/themes/html/harmony-event/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Jan 2024 11:18:16 GMT -->
 </html>
