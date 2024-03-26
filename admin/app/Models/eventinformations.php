@@ -11,5 +11,5 @@ class eventinformations extends Model
     protected $primaryKey = 'id';
     public $incrementing = true;
     public $timestamps = true;
-    protected $fillable = ['name','event_date','event_time','event_details','event_price','event_place','event_city','event_address','image','start_date_booking','event_organization_team_nme','event_speaker_nae','max_seats'];
+    protected $fillable = ['name','event_date','event_time','event_details','event_price','event_place','event_city','event_address','image','start_date_booking','event_organization_team_nme','event_speaker_nae','max_seats','cat_id'];
 }

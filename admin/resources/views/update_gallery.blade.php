@@ -33,6 +33,8 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
+              @foreach($update_data as $gallery)
+
               <form method="post" enctype="multipart/form-data"  >
               @CSRF
                 <div class="card-body">
@@ -40,7 +42,7 @@
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="image[]" multiple>
+                        <input type="file" class="custom-file-input" id="exampleInputFile" name="image[]" multiple  value="{{$gallery->image}}">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                       <div class="input-group-append">
@@ -51,7 +53,7 @@
                     <label for="exampleInputFile">Video input</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="image[]" multiple>
+                        <input type="file" class="custom-file-input" id="exampleInputFile" name="image[]" multiple value="{{$gallery->video}}">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                       <div class="input-group-append">
@@ -68,6 +70,8 @@
                   <input type="submit" class="btn btn-primary" value="ADD" name="add">
                 </div>
               </form>
+              @endforeach
+
             </div>
             <!-- /.card --> 
               <!-- /.card-body -->

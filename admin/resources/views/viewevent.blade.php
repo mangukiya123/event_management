@@ -11,7 +11,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
               <li class="breadcrumb-item active">Event</li>
             </ol>
           </div>
@@ -27,7 +27,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+               
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -35,19 +35,19 @@
                   <thead>
                   <tr>
                   <th>Id</th>
-                    <th>Event name</th>
+                    <!-- <th>Event name</th>
                     <th>Event Date</th>
                     <th>Event Time</th>
-                    <!-- <th>Event Details</th>
+                    <th>Event Details</th>
                     <th>Event Price</th>
                     <th>Event Place</th>
                     <th>Event City</th>
                     <th>Event Address</th>
-                    <th>image</th>
                     <th>Start Booking Date</th>
                     <th>Event Organization Name</th>
                     <th>Event Speaker Name</th>
                     <th>Max Seats</th> -->
+                    <th>image</th>
                     <th>Delete</th>
                     <th>Update</th>
                   </tr>
@@ -56,19 +56,19 @@
                 @foreach($event_data as $events) 
                   <tr>
                     <td>{{$events->id}}</td>
-                    <td>{{$events-> name }}</td>
+                    <!-- <td>{{$events-> name }}</td>
                     <td>{{$events->event_date}}</td>
                     <td>{{$events->event_time}}</td>
-                    <!-- <td>{{$events->event_details}}</td>
-                    <td>{{$events->event_price}}</td>
-                    <td>{{$events->event_place}}</td>
+                    <td>{{$events->event_details}}</td>
+                   <td>{{$events->event_price}}</td>
+                     <td>{{$events->event_place}}</td>
                     <td>{{$events->event_city}}</td>
                     <td>{{$events->event_address}}</td>
-                    <td>{{$events->image}}</td>
                     <td>{{$events->start_date_booking}}</td>
                     <td>{{$events->event_organization_team_nme}}</td>
                     <td>{{$events->event_speaker_nae}}</td>
                     <td>{{$events->max_seats}}</td> -->
+                    <td><img src="{{asset('images/'.$events->image)}}" height="100px" width="100px"></td>
                     <td><a href="delete_event/{{$events->id}}"><ion-icon name='trash-outline'></ion-icon></a></td>
                      <td><a href="update_event/{{$events->id}}"><ion-icon name='create-outline'></ion-icon></a></td>
 

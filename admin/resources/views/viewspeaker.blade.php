@@ -11,7 +11,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
               <li class="breadcrumb-item active">Speaker</li>
             </ol>
           </div>
@@ -27,7 +27,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+               
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -51,7 +51,7 @@
                     <td>{{$speakers-> speaker_name }}</td>
                     <td>{{$speakers->details}}</td>
                     <td>{{$speakers->contect_number}}</td>
-                    <td>{{$speakers->image}}</td>
+                    <td><img src="{{asset('images/'.$speakers->image)}}" height="100px" width="100px"></td>
                     <td>{{$speakers->experience}}</td>
                     <td><a href="delete_speaker/{{$speakers->id}}"><ion-icon name='trash-outline'></ion-icon></a></td>
                      <td><a href="update_speaker/{{$speakers->id}}"><ion-icon name='create-outline'></ion-icon></a></td>

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admincontroller;
+use App\Http\Controllers\SendEmailController;
+
+
 
 
 /*
@@ -43,6 +46,11 @@ Route::any('/addspeaker',[admincontroller::class,'addspeaker']);
 Route::get('/viewspeaker',[admincontroller::class,'viewspeaker']);
 Route::any('/addupcommingevent',[admincontroller::class,'addupcommingevent']);
 Route::get('/viewupcommingevent',[admincontroller::class,'viewupcommingevent']);
+
+Route::any('/forgetpassword',[admincontroller::class,'forgetpassword']);
+Route::any('/recoverpassword',[admincontroller::class,'recoverpassword']);
+
+
 
 //update and delete
 
@@ -86,3 +94,14 @@ Route::any('/update_upevent/{id}',[admincontroller::class,'update_upevent']);
 
 Route::get('/delete_service/{id}',[admincontroller::class,'delete_service']);
 Route::any('/update_service/{id}',[admincontroller::class,'update_service']);
+
+Route::get('/delete_gallery/{id}',[admincontroller::class,'delete_gallery']);
+Route::any('/update_gallery/{id}',[admincontroller::class,'update_gallery']);
+
+Route::any('/logout',[admincontroller::class,'logout']);
+
+Route::get('/profile',[admincontroller::class,'profile']);
+
+Route::any('send-email', [SendEmailController::class, 'index']);
+Route::any('verifyotp', [admincontroller::class,'verify_otp']);
+

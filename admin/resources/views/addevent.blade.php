@@ -85,6 +85,14 @@
                     <input type="text" class="form-control" id="exampleInputPassword1" placeholder="speaker name" name="seats">
                   </div>
                   <div class="form-group">
+                    <select name="category">
+                      <option selected="" disabled>select Category</option>
+                      @foreach($category as $cat)
+                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+                      @endforeach
+                    </select>
+                     </div>
+                  <div class="form-group">
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
                       <div class="custom-file">

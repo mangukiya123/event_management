@@ -384,7 +384,80 @@ $comment_data = comment($con);
 		================================================== -->
 
 
+<!-- testimonial5-section - start
+		================================================== -->
+		<section id="testimonial5-section" class="testimonial5-section sec-ptb-100 clearfix">
+			<div class="container">
 
+				<!-- section-title - start -->
+				<div class="section-title text-center mb-80 sr-fade1">
+					<small class="sub-title">testimonials</small>
+					<h2 class="big-title">clients <strong>testimonial</strong></h2>
+				</div>
+				<!-- section-title - end -->
+
+				<!-- testimonial5-carousel - start -->
+				<div id="testimonial5-carousel" class="testimonial5-carousel sr-fade2 owl-carousel owl-theme">
+
+					<div class="item text-center">
+						<span class="quote-icon">
+							<i class="fas fa-quote-right"></i>
+						</span>
+						<p class="clients-comment">
+							“Bring people together, or turn your passion into a business. Harmoni gives you everything you need to host your best event yet. lorem ipsum diamet. Bring people together, or turn your passion into a business. Harmoni gives you everything you need to host your best event yet.”
+						</p>
+						<div class="client-info">
+							<h3 class="client-name">Jenni Hernandes</h3>
+							<span class="client-sub-title">Graphic Designer</span>
+						</div>
+					</div>
+
+					<div class="item text-center">
+						<span class="quote-icon">
+							<i class="fas fa-quote-right"></i>
+						</span>
+						<p class="clients-comment">
+							“Bring people together, or turn your passion into a business. Harmoni gives you everything you need to host your best event yet. lorem ipsum diamet. Bring people together, or turn your passion into a business. Harmoni gives you everything you need to host your best event yet.”
+						</p>
+						<div class="client-info">
+							<h3 class="client-name">Jenni Hernandes</h3>
+							<span class="client-sub-title">Graphic Designer</span>
+						</div>
+					</div>
+
+					<div class="item text-center">
+						<span class="quote-icon">
+							<i class="fas fa-quote-right"></i>
+						</span>
+						<p class="clients-comment">
+							“Bring people together, or turn your passion into a business. Harmoni gives you everything you need to host your best event yet. lorem ipsum diamet. Bring people together, or turn your passion into a business. Harmoni gives you everything you need to host your best event yet.”
+						</p>
+						<div class="client-info">
+							<h3 class="client-name">Jenni Hernandes</h3>
+							<span class="client-sub-title">Graphic Designer</span>
+						</div>
+					</div>
+
+					<div class="item text-center">
+						<span class="quote-icon">
+							<i class="fas fa-quote-right"></i>
+						</span>
+						<p class="clients-comment">
+							“Bring people together, or turn your passion into a business. Harmoni gives you everything you need to host your best event yet. lorem ipsum diamet. Bring people together, or turn your passion into a business. Harmoni gives you everything you need to host your best event yet.”
+						</p>
+						<div class="client-info">
+							<h3 class="client-name">Jenni Hernandes</h3>
+							<span class="client-sub-title">Graphic Designer</span>
+						</div>
+					</div>
+
+				</div>
+				<!-- testimonial5-carousel - end -->
+
+			</div>
+		</section>
+		<!-- testimonial5-section - end
+		================================================== -->
 
 
 		

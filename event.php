@@ -211,10 +211,10 @@ function eventlisting($con)
 
 								<!-- event-item - start -->
 								<div class="event-list-item clearfix">
-
+<?php while($event_row = mysqli_fetch_assoc($event_data)) { $date = explode(',',$event_row['event_date']); ?>
 									<!-- event-image - start -->
 									<div class="event-image">
-										<?php while($event_row = mysqli_fetch_assoc($event_data)) { $date = explode(',',$event_row['event_date']); ?>
+										
 										<div class="post-date">
 											<span class="date"><?php echo $date[0]; ?></span>
 											<small class="month"><?php echo $date[1]; ?></small>
@@ -281,9 +281,9 @@ function eventlisting($con)
 											<a class="page-link" href="#!">Next</a>
 										</li>
 									</ul>
-<?php } ?>								</div>
+						</div>
 
-							</div>
+							</div><?php } ?>		
 
 							<div id="grid-style" class="tab-pane fade">
 								<div class="row justify-content-center">

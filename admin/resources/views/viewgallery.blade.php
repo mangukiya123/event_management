@@ -12,7 +12,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
               <li class="breadcrumb-item active">Gallery</li>
             </ol>
           </div>
@@ -32,28 +32,20 @@
                   <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Event Id</th>
-                    <th>Comment Id</th>
-                    <th>Comment</th>
-                    <th>Comment Date</th>
-                    <th>name</th>
-                    <th>proffession</th>
+                    <th>image</th>
+                    <th>video</th>
                     <th>Delete</th>
                     <th>Update</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr>
-                  <?php foreach($comment_data as $commments) { ?>
-                    <td>{{$commments->id}}</td>
-                    <td>{{$commments->event_id}}</td>
-                    <td>{{$commments->customer_id}}</td>
-                    <td>{{$commments->cmt}}</td>
-                    <td>{{$commments->cmt_date}}</td>
-                    <td>{{$commments->name}}</td>
-                    <td>{{$commments->proffession}}</td>
-                    <td><a href="delete_comment/{{$commments->id}}"><ion-icon name='trash-outline'></ion-icon></a></td>
-                     <td><a href="update_comment/{{$commments->id}}"><ion-icon name='create-outline'></ion-icon></a></td>
+                  <?php foreach($gallery_data as $gallery) { ?>
+                    <td>{{$gallery->id}}</td>
+                    <td><img src="{{asset('images/'.$gallery->image)}}" height="100px" width="100px">{{$gallery->image}}</td>
+                    <td><video src="{{asset('video/'.$gallery->video)}}" height="100px" width="100px">  </td>
+                    <td><a href="delete_gallery/{{$gallery->id}}"><ion-icon name='trash-outline'></ion-icon></a></td>
+                     <td><a href="update_gallery/{{$gallery->id}}"><ion-icon name='create-outline'></ion-icon></a></td>
 
                   </tr>
                   <?php } ?>

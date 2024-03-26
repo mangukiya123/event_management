@@ -44,9 +44,9 @@
 
       function eventlisting($con)
     {
-    	$sql_select_eventlisting="select * from eventinformations";
+    	$sql_select_eventlisting="select * from eventinformations ";
     	$event_data = mysqli_query($con,$sql_select_eventlisting);
-		return $event_data;
+			return $event_data;
     } 
 
      function speaker($con)
@@ -80,6 +80,7 @@ $service_data=services($con);
 $slider_data = slider($con);
 $upcommingevent_data = upcommingevent($con);
 $category_data = category($con);
+$category_data1 = category($con);
 $comment_data = comment($con);	
 $date_data = dates($con);	
  
@@ -97,16 +98,11 @@ $sql_data = speaker($con);
 
 $event_data = eventlisting($con);	
 $event_data1 = eventlisting($con);
-$event_data2 = eventlisting($con);
-$event_data3 = eventlisting($con);
-
-
-
- ?>
+?>
  
 		<!-- slide-section - start
 		================================================== -->
-		<section id="main-carousel2" class="main-carousel2 clearfix">
+	<section id="main-carousel2" class="main-carousel2 clearfix">
 <?php while($slider_row = mysqli_fetch_assoc($slider_data)) { ?>
 			<div class="item" style="background-image: url(assets/images/slider/<?php echo $slider_row['image'];	 ?>);">
 				<div class="overlay-black">
@@ -121,11 +117,11 @@ $event_data3 = eventlisting($con);
 									</div>
 									<span class="date"><?php echo $slider_row['date']; ?></span>
 									<h1 class="title-text">
-									<?php echo $slider_row['title']; ?>
+										 <?php echo $slider_row['title']; ?>
 									</h1>
-									<strong class="bold-text"><?php echo $slider_row['subtitle']; ?></strong>
-									<a href="booking.php" class="custom-btn">booking ticket</a>
-									<a href="event-details.php" class="details-btn">event details</a>
+									<!-- <strong class="bold-text"><?php echo $slider_row['subtitle']; ?></strong> -->
+									<a href="" class="custom-btn">booking ticket</a>
+									<a href="#!" class="details-btn">event details</a>
 								</div>
 							</div>
 							<!-- slider-content - end -->
@@ -134,7 +130,8 @@ $event_data3 = eventlisting($con);
 					</div>
 				</div>
 			</div>
-			<?php } ?>
+
+			<?php }?>
 
 		</section>
 		<!-- slide-section - end
@@ -301,6 +298,7 @@ $event_data3 = eventlisting($con);
 		</div>
 		<!-- absolute-eventmake-section - end
 		================================================== -->
+
 
 
 
@@ -491,10 +489,10 @@ $event_data3 = eventlisting($con);
 								">
 							</a>
 						</div>
-						<img src="assets\images\upcomming-events/<?php echo  $upcommingevent_row['image']; ?>" alt="Image_not_found">
+						<img src="assets\images\upcomming-events/<?php echo  $image[0]; ?>" alt="Image_not_found">
 					</div>
 					<div class="small-image">
-						<img src="assets/images/upcomming-events/holi2.jpg" alt="Image_not_found">
+						<img src="assets/images/upcomming-events/<?php echo  $image[0]; ?> " style="width: 100%; height: 300px;" alt="Image_not_found">
 					</div>
 				</div>
 			</div>
@@ -555,7 +553,8 @@ $event_data3 = eventlisting($con);
 					<div class="row">
 
 						<!-- section-title - start -->
-						<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="col-lg-4 col-md-
+						12 col-sm-12">
 							<div class="section-title text-left">
 								<span class="line-style"></span>
 								<small class="sub-title">ShaShiSha  events</small>
@@ -568,26 +567,13 @@ $event_data3 = eventlisting($con);
 						<div class="col-lg-8 col-md-12 col-sm-12">
 							<div class="event-tab-menu clearfix">
 								<ul class="nav">
+									<?php while($row_cat = mysqli_fetch_assoc($category_data1)) { ?>
 									<li>
-										<a data-toggle="tab" href="#conference-event">
-											<strong><i class="fas fa-microphone"></i> conference</strong> event
+										<a data-toggle="tab" href="#conference-event<?php echo $row_cat['id'];?>">
+											<strong><i class="<?php echo $row_cat['icon_code']; ?>"></i> <?php echo $row_cat['name'] ?></strong> event
 										</a>
 									</li>
-									<li>
-										<a data-toggle="tab" href="#playground-event">
-											<strong><i class="fas fa-birthday-cake"></i> play ground</strong> event
-										</a>
-									</li>
-									<li>
-										<a class="active" data-toggle="tab" href="#musical-event">
-											<strong><i class="fas fa-music"></i> musical</strong> event
-										</a>
-									</li>
-									<li>
-										<a data-toggle="tab" href="#other-event">
-											<strong><i class="far fa-check-square"></i> other</strong> event
-										</a>
-									</li>
+									<?php } ?>
 								</ul>
 							</div>
 						</div>
@@ -600,11 +586,11 @@ $event_data3 = eventlisting($con);
 				<div class="tab-content">
 
 					<!-- conference-event - start -->
-					<div id="conference-event" class="tab-pane fade">
+					<?php $id=0; while($event_row = mysqli_fetch_assoc($event_data1)) { $date = explode(',',$event_row['event_date']);?>
+					
+					<div id="conference-event<?php echo $id++; ?>" class="tab-pane fade">
 						<div class="row">
-<?php while($event_row = mysqli_fetch_assoc($event_data1)) { $date = explode(',',$event_row['event_date']);?>
 
-							<!-- event-item - start -->
 							<div class="col-lg-4 col-md-6 col-sm-12">
 								<div class="event-item2 clearfix">
 
@@ -616,7 +602,7 @@ $event_data3 = eventlisting($con);
 											<small class="month"><?php echo $date[1]; ?></small>
 											
 										</div>
-										<img src="assets/images/event/<?php echo $event_row['image']; ?>" alt="Image_not_found">
+										<img src="assets/images/event/<?php echo $event_row['image']; ?>"  style="width: 100%; height: 300px;" alt="Image_not_found">
 									</div>
 									<!-- event-image - end -->
 
@@ -654,259 +640,12 @@ $event_data3 = eventlisting($con);
 								</div>
 							</div>
 
-						<?php } ?>
-							<!-- event-item - end -->
-
-
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								<div class="pagination ul-li clearfix">
-									<ul>
-										<li class="page-item prev-item">
-											<a class="page-link" href="#">Prev</a>
-										</li>
-										<li class="page-item"><a class="page-link" href="#">01</a></li>
-										<li class="page-item active"><a class="page-link" href="#">02</a></li>
-										<li class="page-item"><a class="page-link" href="#">03</a></li>
-										<li class="page-item"><a class="page-link" href="#">04</a></li>
-										<li class="page-item"><a class="page-link" href="#">05</a></li>
-										<li class="page-item next-item">
-											<a class="page-link" href="#">Next</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-
 						</div>
 					</div>
-					<!-- conference-event - end -->
 
-					<!-- playground-event - start -->
-					<div id="playground-event" class="tab-pane fade">
-						<div class="row">
-             <?php while($event_row = mysqli_fetch_assoc($event_data)) { $date = explode(',',$event_row['event_date']); ?>
-							<!-- event-item - start -->
-							<div class="col-lg-4 col-md-6 col-sm-12">
-								<div class="event-item2 clearfix">
 
-									<!-- event-image - start -->
-									<div class="event-image">
-										<div class="post-date">
-											<span class="date"><?php echo $date[0]; ?></span>
-											<small class="month"><?php echo $date[1]; ?></small>
-										</div>
-										<img src="assets/images/event/<?php echo $event_row['image']; ?>" alt="Image_not_found">
-									</div>
-									<!-- event-image - end -->
 
-									<!-- event-content - start -->
-									<div class="event-content">
-										<div class="event-title mb-15">
-											<h3 class="title">
-											<?php echo $event_row['name']; ?>
-											</h3>
-											<span class="ticket-price yellow-color">Tickets from <?php echo $event_row['event_price']; ?></span>
-										</div>
-										<div class="event-post-meta ul-li-block mb-30">
-											<ul>
-												<li>
-													<span class="icon">
-														<i class="far fa-clock"></i>
-													</span>
-													Start <?php echo $event_row['event_time']; ?>
-												</li>
-												<li>
-													<span class="icon">
-														<i class="fas fa-map-marker-alt"></i>
-													</span>
-													<?php echo $event_row['event_address']; ?>
-												</li>
-											</ul>
-										</div>
-										<a href="#!" class="tickets-details-btn">
-											tickets & details
-										</a>
-									</div>
-									<!-- event-content - end -->
-
-								</div>
-							</div>
-								<?php } ?>
-							<!-- event-item - end -->
-
-							
-
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								<div class="pagination ul-li clearfix">
-									<ul>
-										<li class="page-item prev-item">
-											<a class="page-link" href="#">Prev</a>
-										</li>
-										<li class="page-item"><a class="page-link" href="#">01</a></li>
-										<li class="page-item active"><a class="page-link" href="#">02</a></li>
-										<li class="page-item"><a class="page-link" href="#">03</a></li>
-										<li class="page-item"><a class="page-link" href="#">04</a></li>
-										<li class="page-item"><a class="page-link" href="#">05</a></li>
-										<li class="page-item next-item">
-											<a class="page-link" href="#">Next</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-
-						</div>
-					</div>
-					<!-- playground-event - end -->
-
-					<!-- musical-event - start -->
-					<div id="musical-event" class="tab-pane fade in active show">
-						<div class="row">
- <?php while($event_row = mysqli_fetch_assoc($event_data2)) { $date = explode(',',$event_row['event_date']); ?>
-							<!-- event-item - start -->
-							<div class="col-lg-4 col-md-6 col-sm-12">
-								<div class="event-item2 clearfix">
-
-									<!-- event-image - start -->
-									<div class="event-image">
-										<div class="post-date">
-											<span class="date"><?php echo $date[0]; ?></span>
-											<small class="month"><?php echo $date[1]; ?></small>
-										</div>
-										<img src="assets/images/event/<?php echo $event_row['image']; ?>" alt="Image_not_found">
-									</div>
-									<!-- event-image - end -->
-
-									<!-- event-content - start -->
-									<div class="event-content">
-										<div class="event-title mb-15">
-											<h3 class="title">
-												<?php echo $event_row['name']; ?>
-
-											</h3>
-											<span class="ticket-price yellow-color">Tickets from <?php echo $event_row['event_price']; ?></span>
-										</div>
-										<div class="event-post-meta ul-li-block mb-30">
-											<ul>
-												<li>
-													<span class="icon">
-														<i class="far fa-clock"></i>
-													</span>
-													Start <?php echo $event_row['event_time']; ?>
-												</li>
-												<li>
-													<span class="icon">
-														<i class="fas fa-map-marker-alt"></i>
-													</span>
-													<?php echo $event_row['event_address']; ?>
-												</li>
-											</ul>
-										</div>
-										<a href="#!" class="tickets-details-btn">
-											tickets & details
-										</a>
-									</div>
-									<!-- event-content - end -->
-
-								</div>
-							</div>
-							<!-- event-item - end -->
-
-				
-						<?php } ?>
-
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								<div class="pagination ul-li clearfix">
-									<ul>
-										<li class="page-item prev-item">
-											<a class="page-link" href="#">Prev</a>
-										</li>
-										<li class="page-item"><a class="page-link" href="#">01</a></li>
-										<li class="page-item active"><a class="page-link" href="#">02</a></li>
-										<li class="page-item"><a class="page-link" href="#">03</a></li>
-										<li class="page-item"><a class="page-link" href="#">04</a></li>
-										<li class="page-item"><a class="page-link" href="#">05</a></li>
-										<li class="page-item next-item">
-											<a class="page-link" href="#">Next</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-
-						</div>
-					</div>
-					<!-- musical-event - end -->
-
-					<!-- other-event - start -->
-					<div id="other-event" class="tab-pane fade">
-						<div class="row">
- <?php while($event_row = mysqli_fetch_assoc($event_data3)) { $date = explode(',',$event_row['event_date']); ?>
-
-							<!-- event-item - start -->
-							<div class="col-lg-4 col-md-6 col-sm-12">
-								<div class="event-item2 clearfix">
-
-									<!-- event-image - start -->
-									<div class="event-image">
-										<div class="post-date">
-											<span class="date"><?php echo $date[0]; ?></span>
-											<small class="month"><?php echo $date[1]; ?></small>
-										</div>
-										<img src="assets/images/event/3.event-grid.jpg" alt="Image_not_found">
-									</div>
-									<!-- event-image - end -->
-
-									<!-- event-content - start -->
-									<div class="event-content">
-										<div class="event-title mb-15">
-											<h3 class="title">
-													<?php echo $event_row['name']; ?>
-											</h3>
-											<span class="ticket-price yellow-color">Tickets from <?php echo $event_row['event_price']; ?></span>
-										</div>
-										<div class="event-post-meta ul-li-block mb-30">
-											<ul>
-												<li>
-													<span class="icon">
-														<i class="far fa-clock"></i>
-													</span>
-													Start  <?php echo $event_row['event_time']; ?>
-												</li>
-												<li>
-													<span class="icon">
-														<i class="fas fa-map-marker-alt"></i>
-													</span>
-														<?php echo $event_row['event_address']; ?>
-												</li>
-											</ul>
-										</div>
-										<a href="#!" class="tickets-details-btn">
-											tickets & details
-										</a>
-									</div>
-									<!-- event-content - end -->
-
-								</div>
-							</div>
-							<!-- event-item - end -->
-
-						<?php } ?>
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								<div class="pagination ul-li clearfix">
-									<ul>
-										<li class="page-item prev-item">
-											<a class="page-link" href="#">Prev</a>
-										</li>
-										<li class="page-item"><a class="page-link" href="#">01</a></li>
-										<li class="page-item active"><a class="page-link" href="#">02</a></li>
-										<li class="page-item"><a class="page-link" href="#">03</a></li>
-										<li class="page-item"><a class="page-link" href="#">04</a></li>
-										<li class="page-item"><a class="page-link" href="#">05</a></li>
-										<li class="page-item next-item">
-											<a class="page-link" href="#">Next</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-
+					<?php } ?>
 						</div>
 					</div>
 					<!-- other-event - end -->
@@ -929,8 +668,7 @@ $event_data3 = eventlisting($con);
 			<div class="jarallax" style="background-image: url(assets/images/speaker/Black-White-Dubai-Wallpaper.jpg);">
 				<div class="overlay-white">
 					<div class="container">
-
-						<!-- speaker-carousel - start -->
+		<!-- speaker-carousel - start -->
 						<div class="speaker-carousel">
 							<div class="slider-for">
 
@@ -978,14 +716,18 @@ $event_data3 = eventlisting($con);
 														</ul>
 													</div>
 												</div>
+
 											</div>
 										</div>
 										<!-- speaker-content - end -->
-									</div>	
+
+									</div>
 								</div>
-								<?php } ?>
+							<?php } ?>
+
 							</div>
 
+									
 
 							<div class="slider-nav">
 								<?php while($row = mysqli_fetch_assoc($sql_data)) { ?>
@@ -998,7 +740,8 @@ $event_data3 = eventlisting($con);
 										<span class="sub-title">Shashisha Speaker</span>
 									</div>
 								</div>
-               <?php }?>	
+<?php }?>
+								
 							</div>
 						</div>
 						<!-- speaker-carousel - end -->
@@ -1024,7 +767,7 @@ $event_data3 = eventlisting($con);
 								<div class="col-lg-6 col-md-12 col-sm-12">
 									<div class="section-title text-left">
 										<span class="line-style"></span>
-										<small class="sub-title">ShaShiSha  venues</small>
+										<small class="sub-title">Shashisha  venues</small>
 										<h2 class="big-title">Conference <strong>Rooms & Hotels</strong></h2>
 									</div>
 								</div>
@@ -1078,27 +821,26 @@ $event_data3 = eventlisting($con);
 						<!-- tab-menu - start -->
 						<div class="container">
 							<div class="row justify-content-lg-start">
-								<?php while($hotel_row = mysqli_fetch_assoc($hotels_data)) {$ratting = explode(',',$hotel_row['ratting']) ?>
 								<div class="col-lg-6 col-md-12 col-sm-12">
 									<div class="tab-menu">
 										<ul class="nav tab-nav mb-50">
 
+<?php $a=0; while($hotel_row = mysqli_fetch_assoc($hotels_data)) {$ratting = explode(',',$hotel_row['ratting']) ?>
 											<li class="nav-item">
-												<a class="nav-link active" id="nav-one-tab" data-toggle="tab" href="#nav-one" aria-expanded="true">
+												<a class="nav-link active" id="nav-one-tab" data-toggle="tab" href="#<?php echo 'a',$a; ?>" aria-expanded="true">
 													<span class="image">
 														<img src="assets/images/conference/<?php echo $hotel_row["image"]; ?>" alt="Image_not_found">
 													</span>
 													<span class="title">
-														<strong class="yellow-color"><?php echo $ratting[0]; ?><i class="<?php echo $ratting[1]; ?>"></i> <?php echo $hotel_row["name"]; ?>  </strong>
-														
+														<strong class="yellow-color"><?php echo $ratting[0]; ?> <i class="<?php echo $ratting[1]; ?>"></i> </strong>
+														Hotel
 													</span>
-													<small class="sub-title"><?php echo $hotel_row["setting"]; ?> seats</small>
-													<small class="price yellow-color"> <?php echo $hotel_row["price"]; ?>/night</small>
+													<small class="sub-title">Party Room 2.500 seats</small>
+													<small class="price yellow-color">Price from $52/night</small>
 												</a>
 											</li>
-										
 											
-
+											<?php $a++; } ?>
 										</ul>
 										<div class="more-btn">
 											<a href="#!">
@@ -1106,51 +848,53 @@ $event_data3 = eventlisting($con);
 											</a>
 										</div>
 									</div>
-								</div>		<?php } ?>
+								</div>
 							</div>
 						</div>
 						<!-- tab-menu - end -->
 
 						<!-- tab-content - start -->
-						<div class="tab-content">
+						<div class="tab-content"><?php $a=0; while($hotel_row = mysqli_fetch_assoc($hotels_data1)) { ?>
 							<!-- tab-pane - start -->
-							<div class="tab-pane fade active show" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab" aria-expanded="true">	<?php while($hotel_row = mysqli_fetch_assoc($hotels_data1)) { ?>
-								<div class="image">
-									<img src="assets/images/conference/<?php echo $hotel_row["image"]; ?>" alt="Image_not_found">
-									<a href="#!" class="custom-btn">
-										booking now
-									</a>
-									<div class="badge-item">
-										<div class="content">
-											<i class="fas fa-star"></i>
-											<strong>5.0</strong>
-											<small>featured hotel</small>
+									<?php if($a==0) { ?>
+										<div class="tab-pane fade active show" id="<?php echo 'a',$a; ?>" role="tabpanel" aria-labelledby="nav-one-tab" aria-expanded="true">
+											<div class="image">
+												<img src="assets/images/conference/<?php echo $hotel_row["image"]; ?>" alt="Image_not_found">
+												<a href="#!" class="custom-btn">
+													booking now
+												</a>
+												<div class="badge-item">
+													<div class="content">
+														<i class="fas fa-star"></i>
+														<strong>5.0</strong>
+														<small>featured hotel</small>
+													</div>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
-							</div>
-						<?php } ?>
+									<?php } else { ?>
+										<div class="tab-pane fade" id="<?php echo 'a',$a; ?>" role="tabpanel" aria-labelledby="nav-one-tab" aria-expanded="true">
+											<div class="image">
+												<img src="assets/images/conference/<?php echo $hotel_row["image"]; ?>" alt="Image_not_found">
+												<a href="#!" class="custom-btn">
+													booking now
+												</a>
+												<div class="badge-item">
+													<div class="content">
+														<i class="fas fa-star"></i>
+														<strong>5.0</strong>
+														<small>featured hotel</small>
+													</div>
+												</div>
+											</div>
+										</div>
+							<?php } $a++; } ?>
+
 							<!-- tab-pane - end -->
 
-							<!-- tab-pane - start -->
-							<div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab" aria-expanded="false">
-								<div class="image">
-									<img src="assets/images/conference/fresh-conference-room-microphones-decoration-ideas-collection-gallery-to-conference-room-microphones-home-ideas.jpg" alt="Image_not_found">
-									<a href="#!" class="custom-btn">
-										booking now
-									</a>
-									<div class="badge-item">
-										<div class="content">
-											<i class="fas fa-star"></i>
-											<strong>5.0</strong>
-											<small>featured hotel</small>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- tab-pane - end -->
+			
 
-						
+							
 
 						</div>
 						<!-- tab-content - end -->

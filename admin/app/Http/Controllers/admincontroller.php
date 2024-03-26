@@ -31,20 +31,78 @@ class admincontroller extends Controller
             $email = $res->email;
             $password = $res->password;
         
-            $admin_data = admins::where("email",$email)->where("password",$password)->first();
-            
-            return redirect('/dashboard');
+            $admin_data = admins::where("email",$email)->where("password",$password)->get();
+            if($admin_data->count()==1)
+            {
+                session(['email' => $admin_data[0]['email']]);
+                session(['password' => $admin_data[0]['password']]);
+                session(['name' => $admin_data[0]['name']]);
+
+
+                return redirect('/dashboard');
+               
+            }
+            else{
+                return view("welcome");
+                } 
 
         }
-        else{
         return view("welcome");
-        } 
     }
     function dashboard(Request $res)
     {
-        return view("dashboard");
+        $demo = array('event' =>10);
+        if($res->session()->has('email'))
+        {
+            return view("dashboard")->with($demo);
+        }
+        else{
+            return redirect("/");
+        }
+        
     }
-    
+
+    function forgetpassword(Request $res)
+    {
+            if($res->save)
+            {
+                $email = $res->email;
+                $data = admins::where('email',$email)->get();
+                if($data->count()==1)
+                {
+                    session(['email' => $email]);
+                    session(['f_id' => $data[0]['id']]);
+
+                    return redirect('/send-email');
+                }
+            }
+            return view("/forgetpassword");
+    }
+
+    function recoverpassword(Request $res)
+    {
+        if($res->pass)
+        {
+           
+            $pass = $res->password;
+            $data = array('password'=>$pass);
+            
+            $id = $res->session()->get('f_id');
+            
+            $data = admins::where('id',$id)->update($data);
+            return redirect("/");
+        }
+
+            return view("/recoverpassword");
+    }
+        
+
+
+
+    function profile(Request $res)
+    {
+        return view("profile");
+    }
     function viewslider(Request $res)
     {
         $arr['slider_date']=sliders::get();
@@ -149,13 +207,29 @@ class admincontroller extends Controller
             $id=0;
             $arr=array();
 
-            $image_name=$image_array->getClientOriginalName();
-            $image_array->move(public_path('images'),$image_name);
+           
 
-            $video_name=$video_array->getClientOriginalName();
-            $video_array->move(public_path('video'),$video_name);
+            foreach ($image_array as $key => $value) {
+                  $image_name=$value->getClientOriginalName();
+                 $value->move(public_path('images'),$image_name);
+                $arr[$id]=$image_name;
+                $id++;
+            }
 
-            $arr = array('imahe_name'=>$image_name ,'video_name'=>$video_name);
+            $images = implode(',',$arr);
+
+
+            foreach ($video_array as $key => $value) {
+                $video_name=$value->getClientOriginalName();
+                $value->move(public_path('video'),$video_name);
+                $arr[$id]=$video_name;
+                $id++;
+            }
+          
+          
+            $voideo = implode(',',$arr);
+
+            $arr = array('image'=>$images ,'video'=>$voideo);
             $data = gallerys::create($arr);
 
         }
@@ -164,8 +238,14 @@ class admincontroller extends Controller
 
     function viewgallery(Request $res)
     {
-        $arr['category_date']=eventcategies::get();
-        return view("viewcategory")->with($arr);
+        $arr['gallery_data']=gallerys::get();
+        return view("viewgallery")->with($arr);
+    }
+
+    function delete_gallery(Request $res,$id)
+    {
+        gallerys::where('id',$id)->delete();
+        return redirect("/viewgallery");
     }
     
     function viewroomsandhotels(Request $res)
@@ -372,14 +452,22 @@ class admincontroller extends Controller
             $eventdetails = $res->eventdetails;
             $price = $res->price;
 
-
             $image_array=$res->file("image");
+
+          
             $id=0;
             $arr=array();
-            $image_name=$image_array->getClientOriginalName();
-            $image_array->move(public_path('images'),$image_name);
 
-            $comments = array('main_title'=>$maintitle,'sub_title1'=>$subtitle1,'sub_title2'=>$subtitle2,'information'=>$information,'time'=>$time,'place'=>$place,'event_details'=>$eventdetails,'book_ticket'=>$bookticket,'image'=>$image_name,'price'=>$price);
+            foreach ($image_array as $key => $value) {
+                $image_name=$value->getClientOriginalName();
+                $value->move(public_path('images'),$image_name);
+                $arr[$id]=$image_name;
+                $id++;
+            }
+            
+            $images = implode(',',$arr);
+
+            $comments = array('main_title'=>$maintitle,'sub_title1'=>$subtitle1,'sub_title2'=>$subtitle2,'information'=>$information,'time'=>$time,'place'=>$place,'event_details'=>$eventdetails,'book_ticket'=>$bookticket,'image'=>$images,'price'=>$price);
             $data = upcomming_events::create($comments);
             
             
@@ -425,14 +513,19 @@ class admincontroller extends Controller
             $details = $res->details;
             $description = $res->description;
             $start_price_to_max_price = $res->start_price_to_max_price;
-            
             $image_array=$res->file("image");
             $id=0;
             $arr=array();
-            $image_name=$image_array->getClientOriginalName();
-            $image_array->move(public_path('images'),$image_name);
-
-            $comments = array('service_name'=>$name,'details'=>$details,'description'=>$description,'start_price_to_max_price'=>$start_price_to_max_price,'image'=>$image_name);
+            foreach ($image_array as $key => $value)
+             {
+                $image_name=$value->getClientOriginalName();
+                $value->move(public_path('images'),$image_name);
+                $arr[$id]=$image_name;
+                $id++;
+    
+            }
+           $images = implode(',',$arr);
+            $comments = array('service_name'=>$name,'details'=>$details,'description'=>$description,'start_price_to_max_price'=>$start_price_to_max_price,'image'=>$images);
             $data = ourservices::create($comments);
         
             return redirect('/addservices');
@@ -443,6 +536,9 @@ class admincontroller extends Controller
 
     function addevent(Request $res)
     {
+
+        $arr['category']=eventcategies::get();
+
         if(isset($res->add)){
 
             $name = $res->name;
@@ -457,23 +553,24 @@ class admincontroller extends Controller
             $teamname = $res->teamname;
             $speakername = $res->speakername;
             $seats = $res->seats;
+            $category = $res->category;
 
 
             $image_array=$res->file("image");
-            $id=0;
-            $arr=array();
+            // $id=0;
+            // $arr=array();
             $image_name=$image_array->getClientOriginalName();
             $image_array->move(public_path('images'),$image_name);
         
     
-            $comments = array('name'=>$name,'event_date'=>$date,'event_time'=>$time,'event_details'=>$details,'event_price'=>$price,'event_place'=>$place,'event_city'=>$city,'event_address'=>$address,'start_date_booking'=>$stsrtbookindate,'event_organization_team_nme'=>$teamname,'event_speaker_nae'=>$speakername,'max_seats'=>$seats,'image'=>$image_name);
+            $comments = array('name'=>$name,'event_date'=>$date,'event_time'=>$time,'event_details'=>$details,'event_price'=>$price,'event_place'=>$place,'event_city'=>$city,'event_address'=>$address,'start_date_booking'=>$stsrtbookindate,'event_organization_team_nme'=>$teamname,'event_speaker_nae'=>$speakername,'max_seats'=>$seats,'image'=>$image_name,'cat_id'=>$category);
             $data = eventinformations::create($comments);
             
             
               return redirect('/addevent');
     
         }
-        return view("addevent");
+        return view("addevent")->with($arr);
     }
 
     function addspeaker(Request $res)
@@ -650,21 +747,7 @@ class admincontroller extends Controller
         return view("update_date")->with($arr);
     }
 
-    function update_gallery(Request $res,$id)
-    {
-        $arr["update_data"] = dates::where('id',$id)->get();
-        if(isset($res->add)){
-
-            $date = $res->Date;
     
-            $dates = array('date'=>$date);
-            $data = dates::where('id',$id)->update($dates);
-
-              return redirect('/viewgallery')->with($arr);
-    
-        }
-        return view("update_gallery");
-    }
 
     function update_slider(Request $res,$id)
     {
@@ -794,6 +877,53 @@ class admincontroller extends Controller
         }
         return view("update_service")->with($arr);
     }
+
+    function update_gallery(Request $res,$id)
+    {
+        $arr["update_data"]=ourservices::where('id',$id)->get();
+        if($res->add)
+        {
+            $image_array=$res->file("image");
+            $video_array=$res->file("video");
+            
+            $id=0;
+            $arr=array();
+
+            $image_name=$image_array->getClientOriginalName();
+            $image_array->move(public_path('images'),$image_name);
+
+            $video_name=$video_array->getClientOriginalName();
+            $video_array->move(public_path('video'),$video_name);
+
+            $arr = array('image'=>$image_name ,'video'=>$video_name);
+            $data = gallerys::where('id',$id)->update($arr);
+
+            return redirect("viewgallery");
+        }
+      
+        return view("update_gallery")->with($arr);
+    }
+
+    
+
+function logout(Request $res)
+{
+    $res->session()->flush();
+    return redirect("/");
 }
 
 
+function verify_otp(Request $res)
+{
+    $old_OTP = $res->session()->get('OTP');
+    if($res->check)
+    {
+        if($old_OTP==$res->otp)
+        {
+            return redirect('/recoverpassword');
+        }
+    }
+    return view('verify_otp');
+}
+
+}

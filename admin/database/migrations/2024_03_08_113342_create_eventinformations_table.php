@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string("event_organization_team_nme");
             $table->string("event_speaker_nae");
             $table->string("max_seats");
+            $table->string("cat_id");
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
               <li class="breadcrumb-item active">upcomming event</li>
             </ol>
           </div>
@@ -27,7 +27,7 @@
 
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -40,10 +40,10 @@
                     <th>subtitle2</th>
                     <th>information</th>
                     <th>time</th>
-                    <th>place</th>
+                    <!-- <th>place</th> -->
                     <!-- <th>event details</th> -->
                     <th>image</th>
-                    <th>bookticket</th>
+                    <!-- <th>bookticket</th> -->
                     <th>Delete</th>
                     <th>Update</th>
                   </tr>
@@ -57,10 +57,10 @@
                     <td>{{$eventss-> sub_title2}}</td>
                     <td>{{$eventss-> information}}</td>
                     <td>{{$eventss-> time}}</td>
-                    <td>{{$eventss-> place}}</td>
+                    <!-- <td>{{$eventss-> place}}</td> -->
                     <!-- <td>{{$eventss-> event_details}}</td> -->
-                    <td>{{$eventss-> image}}</td>
-                    <td>{{$eventss-> book_ticket}}</td>
+                    <td><img src="{{asset('images/'.$eventss->image)}}" height="50px" width="50px"></td>
+                    <!-- <td>{{$eventss-> book_ticket}}</td> -->
                     <td><a href="delete_upevent/{{$eventss->id}}"><ion-icon name='trash-outline'></ion-icon></a></td>
                      <td><a href="update_upevent/{{$eventss->id}}"><ion-icon name='create-outline'></ion-icon></a></td>
 

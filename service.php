@@ -30,7 +30,7 @@ $service_data = services($con);
 								<div class="breadcrumb-list">
 									<ul>
 										<li class="breadcrumb-item"><a href="index-1.php" class="breadcrumb-link">Home</a></li>
-										<li class="breadcrumb-item"><a href="#!" class="breadcrumb-link">About</a></li>
+										<li class="breadcrumb-item"><a href="about.php" class="breadcrumb-link">About</a></li>
 										<li class="breadcrumb-item active" aria-current="page">services</li>
 									</ul>
 								</div>
@@ -56,12 +56,14 @@ $service_data = services($con);
 
 				<!-- service-wrapper - start -->
 				<div class="service-wrapper">
-
 					<!-- service-item - start -->
+<?php while($service_row = mysqli_fetch_assoc($service_data)) { $image = explode(',',$upcommingevent_row['image']); ?>
+					
 					<div class="service-item clearfix">
+
 						<div class="service-image float-left">
 							<div class="big-image">
-								<img src="assets/images/service/1.image.png" alt="Image_not_found">
+								<img src="assets/images/service/<?php echo $image[0]; ?>" alt="Image_not_found">
 							</div>
 							<div class="small-image">
 								<img src="assets/images/service/1.1.image.png" alt="Image_not_found">
@@ -116,14 +118,12 @@ $service_data = services($con);
 										office meeting
 									</li>
 
-								</ul>
-							</div>
-							<div class="text-left">
-								<a href="#!" class="custom-btn">make an event</a>
-								<a href="#!" class="conference-btn">conference event</a>
-							</div>
-						</div>
-					</div>
+								</ul> </div> <div class="text-left">
+								<a href="#!"
+								class="custom-btn">make an
+								event</a> <a href="#!"
+								class="conference-btn">conference
+								event</a> </div> </div> </div><?php } ?>
 					<!-- service-item - end -->
 
 					<!-- service-item - start -->
